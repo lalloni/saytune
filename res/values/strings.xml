@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="UseCustomLanguage">Use custom language</string>
+    <string name="UseSystemLanguage">Use system language</string>
+    <string name="DefaultLanguage">System language</string>
+    <string name="SelectLanguage">Select language</string>
+    <string name="SpeakingLanguage">Custom language</string>
+    <string name="Speaking">Speaking</string>
+    <string name="Settings">Settings</string>
+    <string name="IntroductionText">Welcome to SayTune</string>
+    <string name="SpeakingDisabled">Speaking is disabled</string>
+    <string name="SpeakingEnabled">Speaking is enabled</string>
     <string name="EnabledService">Enabled</string>
-    <string name="app_name">SayTune</string>
+    <string name="ApplicationName">SayTune</string>
 </resources>

@@ -1,7 +1,7 @@
 /**
  *
  */
-package aeglos.saytune;
+package aeglos.android.common;
 
 import static android.util.Log.DEBUG;
 import static android.util.Log.ERROR;
@@ -73,9 +73,21 @@ public class Logger {
         }
     }
 
+    public void warn(String message, Object... arguments) {
+        if (isLoggable(tag, WARN)) {
+            Log.w(tag, format(message, arguments));
+        }
+    }
+
     public void error(Throwable error, String message, Object... arguments) {
         if (isLoggable(tag, ERROR)) {
             Log.e(tag, format(message, arguments), error);
+        }
+    }
+
+    public void error(String message, Object... arguments) {
+        if (isLoggable(tag, ERROR)) {
+            Log.e(tag, format(message, arguments));
         }
     }
 

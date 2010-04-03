@@ -1,10 +1,12 @@
 /**
  *
  */
-package aeglos.saytune;
+package aeglos.saytune.receivers;
 
 import static android.util.Log.INFO;
 
+import aeglos.android.common.Logger;
+import aeglos.saytune.services.SpeakerService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
