@@ -85,7 +85,7 @@ public class SpeakerService extends Service {
 
         enabled = preferences.getBoolean(SPEAKING_KEY, true);
         defaultLanguage = preferences.getBoolean(DEFAULT_LANGUAGE_KEY, true);
-        language = preferences.getString(LANGUAGE_KEY, "en");
+        language = preferences.getString(LANGUAGE_KEY, "eng");
 
         textToSpeechInitialized = new ConditionVariable(false);
         textToSpeech = new TextToSpeech(getBaseContext(), new OnInitListener() {

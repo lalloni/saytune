@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference android:summaryOn="@string/SpeakingEnabled"
-        android:summaryOff="@string/SpeakingDisabled" android:persistent="true" android:title="@string/Speaking" android:key="@string/Speaking"></CheckBoxPreference>
-    <CheckBoxPreference android:summaryOn="@string/UseSystemLanguage" android:disableDependentsState="true" android:summaryOff="@string/UseCustomLanguage" android:key="@string/DefaultLanguage" android:persistent="true" android:title="@string/DefaultLanguage"></CheckBoxPreference><ListPreference android:title="@string/SpeakingLanguage" android:entries="@array/SupportedTTSLanguages" android:entryValues="@array/SupportedTTSCodes" android:key="@string/SpeakingLanguage" android:persistent="true" android:dialogTitle="@string/SelectLanguage" android:dependency="@string/DefaultLanguage"></ListPreference>
+        android:summaryOff="@string/SpeakingDisabled" android:persistent="true" android:title="@string/Speaking" android:key="@string/Speaking" android:defaultValue="true"></CheckBoxPreference>
+    <CheckBoxPreference android:summaryOn="@string/UseSystemLanguage" android:disableDependentsState="true" android:summaryOff="@string/UseCustomLanguage" android:key="@string/DefaultLanguage" android:persistent="true" android:title="@string/DefaultLanguage" android:defaultValue="true"></CheckBoxPreference><ListPreference android:title="@string/SpeakingLanguage" android:entries="@array/SupportedTTSLanguages" android:entryValues="@array/SupportedTTSCodes" android:key="@string/SpeakingLanguage" android:persistent="true" android:dialogTitle="@string/SelectLanguage" android:dependency="@string/DefaultLanguage"></ListPreference>
 
 </PreferenceScreen>
