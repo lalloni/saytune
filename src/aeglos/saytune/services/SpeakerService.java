@@ -44,9 +44,11 @@ public class SpeakerService extends Service {
 
     private SharedPreferences preferences;
 
-    protected boolean defaultLanguage;
+    private boolean defaultLanguage;
 
-    protected String language;
+    private String language;
+
+    private String lastTune;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -98,28 +100,33 @@ public class SpeakerService extends Service {
     @Override
     public void onStart(final Intent intent, int startId) {
         super.onStart(intent, startId);
-        log.info("onStart: %s", intent);
+        log.info("onStart intent: %s startId: %s", intent, startId);
         if (enabled) {
             if (!mediaPlaybackServiceManager.call(new Closure<IMediaPlaybackService>() {
                 public void with(Context context, IMediaPlaybackService mediaPlayback) throws RemoteException {
-                    if (textToSpeechInitialized.block(10000)) {
-                        if (defaultLanguage) {
-                            if (!Locale.getDefault().equals(textToSpeech.getLanguage())) {
-                                textToSpeech.setLanguage(Locale.getDefault());
+                    if (lastTune == null || !lastTune.equals(mediaPlayback.getPath())) {
+                        if (textToSpeechInitialized.block(10000)) {
+                            if (defaultLanguage) {
+                                if (!Locale.getDefault().equals(textToSpeech.getLanguage())) {
+                                    textToSpeech.setLanguage(Locale.getDefault());
+                                }
+                            } else {
+                                Locale custom = new Locale(language);
+                                if (!custom.equals(textToSpeech.getLanguage())) {
+                                    textToSpeech.setLanguage(custom);
+                                }
+                            }
+                            if (mediaPlayback.isPlaying()) {
+                                textToSpeech.speak(mediaPlayback.getTrackName(), QUEUE_ADD, null);
+                                lastTune = mediaPlayback.getPath();
+                            } else {
+                                log.info("Music player not playing");
                             }
                         } else {
-                            Locale custom = new Locale(language);
-                            if (!custom.equals(textToSpeech.getLanguage())) {
-                                textToSpeech.setLanguage(custom);
-                            }
-                        }
-                        if (mediaPlayback.isPlaying()) {
-                            textToSpeech.speak(mediaPlayback.getTrackName(), QUEUE_ADD, null);
-                        } else {
-                            log.info("Music player not playing anything");
+                            log.info("Timed out waiting for TTS initialization");
                         }
                     } else {
-                        log.info("Timed out waiting for TTS initialization");
+                        log.info("Not repeating tune");
                     }
                 }
             })) {
