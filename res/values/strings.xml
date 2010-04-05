@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="ApplicationDescription">SayTune is a small music player add-on which reads audio track names as they are being played using Android\'s default text to speech engine.</string>
     <string name="UseCustomLanguage">Use custom language</string>
     <string name="UseSystemLanguage">Use system language</string>
     <string name="DefaultLanguage">System language</string>
